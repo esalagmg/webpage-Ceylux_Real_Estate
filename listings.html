@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Properties | Ceylux Real Estate</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#000000',
+                        gold: '#D4AF37',
+                        goldHover: '#f2cd57',
+                        lightGray: '#e5e7eb',
+                        softGray: '#9ca3af',
+                    },
+                    fontFamily: {
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'gold-glow': '0 0 15px rgba(212, 175, 55, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .nav-link {
+            position: relative;
+            display: inline-block;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: #D4AF37;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+            left: 0;
+            background: #D4AF37;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+
+        .gold-border-glow:hover {
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            border-color: #D4AF37;
+        }
+
+        .gold-gradient {
+            background: linear-gradient(90deg, #D4AF37 0%, #f2cd57 50%, #D4AF37 100%);
+            color: #000000;
+        }
+
+        .gold-gradient:hover {
+            background: linear-gradient(90deg, #f2cd57 0%, #D4AF37 50%, #f2cd57 100%);
+            color: #000000;
+        }
+
+        .gold-text-gradient {
+            background: linear-gradient(90deg, #D4AF37 0%, #f2cd57 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-banner {
+            background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.95) 100%), url('assets/hero_villa.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Hide scrollbar for select elements but keep functionality */
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        .select-wrapper::after {
+            content: "\f107";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #D4AF37;
+            pointer-events: none;
+        }
+    </style>
+</head>
+
+<body class="font-sans antialiased bg-dark text-white selection:bg-gold selection:text-dark">
+
+    <!-- Navigation -->
+    <nav id="navbar"
+        class="fixed w-full z-50 top-0 transition-all duration-300 bg-dark/95 backdrop-blur-md border-b border-gray-800 shadow-lg py-4 px-6 lg:px-12">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-center gap-3">
+                <img src="assets/logo.png" alt="Ceylux Estate" class="h-12 w-auto object-contain" id="nav-logo-img">
+                <div class="flex flex-col">
+                    <span
+                        class="font-serif text-2xl lg:text-3xl font-bold tracking-widest text-gold leading-none">CEYLUX</span>
+                    <span class="font-sans text-[0.65rem] tracking-[0.3em] text-lightGray uppercase mt-1">Real
+                        Estate</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="index.html#home"
+                    class="nav-link text-sm uppercase tracking-widest font-medium text-white hover:text-gold transition-colors">Home</a>
+                <a href="index.html#about"
+                    class="nav-link text-sm uppercase tracking-widest font-medium text-white hover:text-gold transition-colors">About</a>
+                <a href="listings.html"
+                    class="nav-link text-sm uppercase tracking-widest font-medium text-gold transition-colors">Listings</a>
+                <a href="index.html#contact"
+                    class="nav-link text-sm uppercase tracking-widest font-medium text-white hover:text-gold transition-colors">Contact</a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button id="mobile-menu-btn" class="md:hidden text-white hover:text-gold focus:outline-none">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu"
+            class="fixed inset-0 bg-dark/95 backdrop-blur-md z-40 flex flex-col items-center justify-center gap-8 transform translate-x-full transition-transform duration-500 ease-in-out">
+            <button id="close-menu-btn"
+                class="absolute top-8 right-8 text-white hover:text-gold text-3xl focus:outline-none">
+                <i class="fas fa-times"></i>
+            </button>
+            <a href="index.html#home"
+                class="mobile-link text-2xl font-serif text-white hover:text-gold transition-colors">Home</a>
+            <a href="index.html#about"
+                class="mobile-link text-2xl font-serif text-white hover:text-gold transition-colors">About</a>
+            <a href="listings.html" class="mobile-link text-2xl font-serif text-gold transition-colors">Listings</a>
+            <a href="index.html#contact"
+                class="mobile-link text-2xl font-serif text-white hover:text-gold transition-colors">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <header
+        class="relative pt-40 pb-24 px-6 hero-banner flex items-center justify-center text-center border-b border-gray-900 border-gold/20">
+        <div class="relative z-10">
+            <span class="block text-gold text-sm tracking-[0.3em] uppercase mb-4 reveal">Exclusive Selection</span>
+            <h1 class="font-serif text-5xl md:text-6xl font-bold text-white mb-6 reveal delay-100">Property Portfolio
+            </h1>
+            <p class="font-sans text-lg text-lightGray max-w-xl mx-auto font-light reveal delay-200">
+                Browse our curated collection of Sri Lanka's finest luxury real estate opportunities.
+            </p>
+        </div>
+    </header>
+
+    <!-- Filter & Search Section -->
+    <section class="py-12 px-6 lg:px-12 bg-[#050505] border-b border-gray-900 transition-shadow" id="filter-bar">
+        <div
+            class="max-w-7xl mx-auto flex flex-col lg:flex-row shadow-2xl bg-dark border border-gray-800 p-2 md:p-4 gap-4 items-center gold-border-glow transition-all duration-300">
+
+            <div
+                class="w-full lg:w-1/4 relative text-white bg-transparent border-b border-gray-700 mx-2 pb-2 flex items-center">
+                <i class="fas fa-search text-gold absolute left-2"></i>
+                <input type="text" id="search-input" placeholder="Search by name, ID, feature..."
+                    class="w-full pl-10 bg-transparent text-sm focus:outline-none focus:border-gold placeholder-gray-500 pb-1 text-white">
+            </div>
+
+            <div class="w-full lg:w-1/5 relative select-wrapper mx-2 pb-2 border-b border-gray-700">
+                <select id="location-select"
+                    class="w-full bg-transparent text-sm text-white focus:outline-none cursor-pointer placeholder-gray-500 appearance-none pb-1">
+                    <option value="all" class="bg-dark text-white">All Locations</option>
+                    <option value="Colombo" class="bg-dark text-white">Colombo</option>
+                    <option value="Galle" class="bg-dark text-white">Galle</option>
+                    <option value="Mirissa" class="bg-dark text-white">Mirissa</option>
+                    <option value="Kandy" class="bg-dark text-white">Kandy</option>
+                    <option value="Pamunugama" class="bg-dark text-white">Pamunugama</option>
+                    <option value="Nawala" class="bg-dark text-white">Nawala</option>
+                </select>
+            </div>
+
+            <div class="w-full lg:w-1/5 relative select-wrapper mx-2 pb-2 border-b border-gray-700">
+                <select id="type-select"
+                    class="w-full bg-transparent text-sm text-white focus:outline-none cursor-pointer placeholder-gray-500 pb-1">
+                    <option value="all" class="bg-dark">All Property Types</option>
+                    <option value="Villa" class="bg-dark">Luxury Villa</option>
+                    <option value="Mansion" class="bg-dark">Beachfront Mansion</option>
+                    <option value="Penthouse" class="bg-dark">Penthouse</option>
+                    <option value="Estate" class="bg-dark">Estate / Land</option>
+                </select>
+            </div>
+
+            <div class="w-full lg:w-1/4 relative select-wrapper mx-2 pb-2 border-b border-gray-700">
+                <select id="sort-select"
+                    class="w-full bg-transparent text-sm text-white focus:outline-none cursor-pointer placeholder-gray-500 pb-1">
+                    <option value="featured" class="bg-dark">Sort: Featured</option>
+                    <option value="price-asc" class="bg-dark">Price: Low to High</option>
+                    <option value="price-desc" class="bg-dark">Price: High to Low</option>
+                </select>
+            </div>
+
+            <div class="w-full lg:w-auto mt-4 lg:mt-0 text-center lg:text-right px-2">
+                <button id="reset-filters"
+                    class="text-xs uppercase tracking-widest text-softGray hover:text-gold transition-colors duration-300">
+                    <i class="fas fa-undo mr-1"></i> Reset
+                </button>
+            </div>
+
+        </div>
+        <div class="max-w-7xl mx-auto mt-4 text-sm text-softGray">
+            Showing <span id="results-count" class="text-gold font-medium">0</span> properties
+        </div>
+    </section>
+
+    <!-- Listings Grid -->
+    <section class="py-20 px-6 lg:px-12 bg-[#000000] min-h-screen">
+        <div class="max-w-7xl mx-auto">
+
+            <div id="listings-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cards will be dynamically injected here by listings.js -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="hidden text-center py-20">
+                <i class="fas fa-search-minus text-5xl text-gray-700 mb-6"></i>
+                <h3 class="font-serif text-2xl text-white mb-2">No properties found</h3>
+                <p class="text-softGray">Try adjusting your filters or search query to find more listings.</p>
+                <button id="clear-search-btn"
+                    class="mt-8 px-8 py-3 bg-transparent text-gold font-medium tracking-wider uppercase text-sm border border-gold hover:gold-gradient transition-all duration-300">
+                    Clear Search
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark border-t border-gray-900 py-12 px-6 lg:px-12 text-center md:text-left text-white">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 items-center">
+            <!-- Brand -->
+            <div>
+                <div class="flex flex-col items-center md:items-start mb-4">
+                    <span class="font-serif text-2xl font-bold tracking-widest text-gold leading-none">CEYLUX</span>
+                    <span class="font-sans text-[0.6rem] tracking-[0.3em] text-lightGray uppercase mt-1">Real
+                        Estate</span>
+                </div>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="flex flex-col items-center gap-3">
+                <a href="index.html#home"
+                    class="text-sm text-softGray hover:text-gold uppercase tracking-wider transition-colors">Home</a>
+                <a href="index.html#contact"
+                    class="text-sm text-softGray hover:text-gold uppercase tracking-wider transition-colors">Contact</a>
+            </div>
+
+            <!-- Contact info -->
+            <div class="text-center md:text-right text-softGray text-sm space-y-2">
+                <p><i class="fas fa-envelope text-gold mr-2"></i> esalagmg123@gmail.com</p>
+                <p><i class="fas fa-phone text-gold mr-2"></i> +94 77 114 9001 | +94 75 329 9895</p>
+                <p class="mt-6 text-xs border-t border-gray-800 pt-4">© 2026 Ceylux Real Estate. All Rights Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/listings.js"></script>
+</body>
+
+</html>
